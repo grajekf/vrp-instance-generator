@@ -143,6 +143,7 @@ public class GeneratorMain {
 
             IntStream.range(0, instanceCount).parallel().forEach(i -> {
                 List<Location> locations = clientCoordsGenerator.generateClientCoords(clientCount, streetInfos);
+                System.out.println("Customer count: " + locations.size());
                 List<Integer> demands = demandGenerator.generateDemands(locations.size());
 
                 List<Node> nodes = IntStream.range(0, locations.size()).mapToObj(index -> {
