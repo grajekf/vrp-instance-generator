@@ -1,0 +1,31 @@
+plugins {
+    id 'java'
+}
+
+group 'pl.grajekf.servicearea'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+apply from: 'gradle/dependencies.gradle'
+
+allprojects {
+    repositories {
+        maven {
+            url "http://download.osgeo.org/webdav/geotools/"
+        }
+        mavenCentral()
+        maven {
+            url "http://mvn.topobyte.de"
+        }
+        maven{
+            url "http://mvn.slimjars.com"
+        }
+        maven {
+            url "http://repo.boundlessgeo.com/main/"
+        }
+        maven {
+            url "http://maven.geomajas.org/"
+        }
+    }
+}

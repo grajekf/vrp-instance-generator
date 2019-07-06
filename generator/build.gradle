@@ -1,0 +1,35 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group 'pl.grajekf.servicearea'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+def globalConf = rootProject.ext
+
+dependencies {
+    Map<String, String> dependencies = globalConf.dep
+    testCompile dependencies.jUnit
+    compile dependencies.graphhopperClient
+    compile dependencies.jspirit
+    compile dependencies.jspiritanalysis
+    compile dependencies.csv
+    compile dependencies.log4j
+    compile dependencies.slf4j
+    compile dependencies.slf4jlog4j
+    compile dependencies.nominatim
+    compile dependencies.httpclient
+    compile dependencies.apachemath
+    compile dependencies.commcli
+    compile project(':core')
+}
+
+
+
+application {
+    mainClassName = 'pl.grajekf.servicearea.generator.GeneratorMain'
+}
+

@@ -1,0 +1,22 @@
+{
+  "vehicleCount": -1,
+  "vehicleCapacity": 12000,
+  "dumpOpenTimeSeconds": 28800,
+  "dumpCloseTimeSeconds": 32200,
+  "vehicleStartTimeSeconds": 28800,
+  "startNode": {
+    "id": 0,
+    "latitude": 52.19432388731374,
+    "longitude": 21.045727729797367
+  },
+  "bbox": {
+    "minx": 20.014972,
+    "maxx": 21.986884,
+    "miny": 52.053714,
+    "maxy": 52.990423
+  },
+  "clientCount": 1500,
+  "district": "Mokotów",
+  "gammaShape": 1.9,
+  "gammaRate": 0.033
+}

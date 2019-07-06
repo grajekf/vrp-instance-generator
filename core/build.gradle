@@ -1,0 +1,26 @@
+plugins {
+    id 'java'
+}
+
+group 'pl.grajekf.servicearea'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+def globalConf = rootProject.ext
+
+
+dependencies {
+    Map<String, String> dependencies = globalConf.dep
+    compile dependencies.graphhoppercore
+    compile dependencies.graphhopperapi
+    compile dependencies.ghreader
+    compile dependencies.jspirit
+    compile dependencies.csv
+    compile dependencies.gson
+    compile dependencies.guava
+    compile dependencies.commlang
+    compile dependencies.jts
+    compile dependencies.jacksonann
+    testCompile dependencies.jUnit
+}
