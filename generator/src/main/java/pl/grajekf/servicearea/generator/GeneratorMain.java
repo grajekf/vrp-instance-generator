@@ -180,7 +180,7 @@ public class GeneratorMain {
         }
         catch( ParseException exp ) {
             // oops, something went wrong
-            System.err.println( "Parsing failed.  Reason: " + exp.getMessage() );
+            logger.error( "Parsing failed.  Reason: " + exp.getMessage() );
         }
 
         catch (IOException e) {
