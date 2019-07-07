@@ -33,3 +33,14 @@ application {
     mainClassName = 'pl.grajekf.servicearea.generator.GeneratorMain'
 }
 
+jar {
+    manifest {
+        attributes "Main-Class": "pl.grajekf.servicearea.generator.GeneratorMain",
+                'Class-Path': configurations.runtime.files.collect { "lib/$it.name" }.join(' ')
+    }
+
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+

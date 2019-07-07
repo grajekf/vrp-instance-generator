@@ -32,10 +32,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -79,8 +76,12 @@ public class GeneratorMain {
             JsonReader reader = new JsonReader(new FileReader(configFilePath));
             GeneratorConfig generatorConfig = gson.fromJson(reader, GeneratorConfig.class);
 
-            Reader csvInput = new FileReader(line.getOptionValue("s"));
-            StreetTypeMapFactory streetTypeMapFactory = new CsvStreetTypeMapFactory(csvInput);
+            StreetTypeMapFactory streetTypeMapFactory = null;
+
+            if(line.hasOption("s")) {
+                Reader csvInput = new FileReader(line.getOptionValue("s"));
+                streetTypeMapFactory = new CsvStreetTypeMapFactory(csvInput);
+            }
 
             List<String> streets = generatorConfig.getStreets();
             String city = generatorConfig.getCity();
@@ -95,7 +96,12 @@ public class GeneratorMain {
             List<Geometry> streetInfos;
 
             if(streets == null || streets.size() == 0) {
-                StreetExtractor streetExtractor = new GraphHopperStreetExtractor(hopper, streetTypeMapFactory.getStreetInfoMap());
+
+                Map<Long, StreetInfo.StreetType> streetTypeMap = new HashMap<>();
+                if(streetTypeMapFactory != null) {
+                    streetTypeMap = streetTypeMapFactory.getStreetInfoMap();
+                }
+                StreetExtractor streetExtractor = new GraphHopperStreetExtractor(hopper, streetTypeMap);
                 NominatimSearchRequest req = new NominatimSearchRequest();
                 req.setQuery(city);
                 req.setPolygonFormat(PolygonFormat.GEO_JSON);
@@ -103,7 +109,7 @@ public class GeneratorMain {
                 Address districtInfo = client.search(req).get(0);
                 Geometry geom = districtInfo.getGeojson();
 
-                List<StreetInfo.StreetType> interestingStreetTypes = Arrays.asList(
+                List<StreetInfo.StreetType> interestingStreetTypes = streetTypeMap.size() > 0 ? Arrays.asList(
                         StreetInfo.StreetType.PRIMARY,
                         StreetInfo.StreetType.PRIMARY_LINK,
                         StreetInfo.StreetType.SECONDARY,
@@ -114,7 +120,7 @@ public class GeneratorMain {
                         StreetInfo.StreetType.LIVING_STREET,
                         StreetInfo.StreetType.RESIDENTIAL,
                         StreetInfo.StreetType.SERVICE
-                );
+                ) : new ArrayList<>();
 
                 streetInfos = streetExtractor.getStreetsInPolygon(geom, interestingStreetTypes).stream().map(
                         s -> {

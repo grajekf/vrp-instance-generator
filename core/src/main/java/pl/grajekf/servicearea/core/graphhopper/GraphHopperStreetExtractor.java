@@ -40,7 +40,7 @@ public class GraphHopperStreetExtractor extends StreetExtractor {
         if (shape.contains(qr.getSnappedPoint().lat, qr.getSnappedPoint().lon)) {
             EdgeIteratorState edge = qr.getClosestEdge();
             StreetInfo newStreet = fromGHEdge(edge);
-            if(streetTypes.contains(newStreet.getType()) && edge.isForward(hopper.getEncodingManager().getEncoder("car")) ) {
+            if((streetTypes.contains(newStreet.getType())) && edge.isForward(hopper.getEncodingManager().getEncoder("car")) ) {
                 result.add(newStreet);
             }
         }
@@ -62,7 +62,7 @@ public class GraphHopperStreetExtractor extends StreetExtractor {
 
                 if (localShape.contains(na.getLatitude(adjNodeId), na.getLongitude(adjNodeId))) {
                     StreetInfo newStreet = fromGHEdge(edge);
-                    if(streetTypes.contains(newStreet.getType()) && edge.isForward(hopper.getEncodingManager().getEncoder("car"))) {
+                    if((streetTypes.size() == 0 || streetTypes.contains(newStreet.getType())) && edge.isForward(hopper.getEncodingManager().getEncoder("car"))) {
                         result.add(newStreet);
                     }
                     return true;

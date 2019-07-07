@@ -1,2 +1,26 @@
 Manifest-Version: 1.0
+Class-Path: lib/directions-api-client-0.10.1-4.jar lib/jsprit-analysis
+ -1.7.2.jar lib/core-1.0-SNAPSHOT.jar lib/jsprit-core-1.7.2.jar lib/co
+ mmons-csv-1.1.jar lib/log4j-core-2.11.1.jar lib/slf4j-log4j12-1.7.25.
+ jar lib/nominatim-api-3.3.jar lib/graphhopper-reader-osm-0.11.0.jar l
+ ib/graphhopper-core-0.11.0.jar lib/slf4j-api-1.7.25.jar lib/httpclien
+ t-4.5.6.jar lib/gs-ui-1.3.jar lib/gs-algo-1.3.jar lib/commons-math3-3
+ .6.1.jar lib/commons-cli-1.4.jar lib/swagger-annotations-1.5.15.jar l
+ ib/logging-interceptor-2.7.5.jar lib/okhttp-2.7.5.jar lib/gson-fire-1
+ .8.0.jar lib/geogson-jts-1.1.100.jar lib/geogson-core-1.1.100.jar lib
+ /gson-2.8.5.jar lib/threetenbp-1.3.5.jar lib/jfreechart-1.0.19.jar li
+ b/gs-core-1.3.jar lib/log4j-api-2.11.1.jar lib/log4j-1.2.17.jar lib/h
+ ttpcore-4.4.10.jar lib/commons-logging-1.2.jar lib/commons-codec-1.10
+ .jar lib/graphhopper-api-0.11.0.jar lib/guava-27.0-jre.jar lib/common
+ s-lang3-3.8.1.jar lib/jts-1.13.jar lib/jackson-annotations-2.9.8.jar 
+ lib/okio-1.6.0.jar lib/jcommon-1.0.23.jar lib/junit-4.12.jar lib/pher
+ d-1.0.jar lib/mbox2-1.0.jar lib/scala-library-2.10.1.jar lib/jts-core
+ -1.14.0.jar lib/hppc-0.8.1.jar lib/xmlgraphics-commons-2.3.jar lib/os
+ mosis-osm-binary-0.46.jar lib/failureaccess-1.0.jar lib/listenablefut
+ ure-9999.0-empty-to-avoid-conflict-with-guava.jar lib/jsr305-3.0.2.ja
+ r lib/checker-qual-2.5.2.jar lib/error_prone_annotations-2.2.0.jar li
+ b/j2objc-annotations-1.1.jar lib/animal-sniffer-annotations-1.17.jar 
+ lib/hamcrest-core-1.3.jar lib/commons-math-2.1.jar lib/commons-io-1.3
+ .1.jar lib/protobuf-java-3.4.0.jar
+Main-Class: pl.grajekf.servicearea.generator.GeneratorMain
 
