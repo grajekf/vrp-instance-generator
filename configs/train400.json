@@ -1,9 +1,6 @@
 {
   "vehicleCount": -1,
   "vehicleCapacity": 5000,
-  "dumpOpenTimeSeconds": 28800,
-  "dumpCloseTimeSeconds": 32200,
-  "vehicleStartTimeSeconds": 28800,
   "startNode": {
     "id": 0,
     "latitude": 52.246669230338384,
@@ -15,6 +12,7 @@
     "miny": 52.153714,
     "maxy": 52.290423
   },
+  "city": "Warszawa",
   "clientCount": 400,
   "streets": [
     "Kasprzaka",

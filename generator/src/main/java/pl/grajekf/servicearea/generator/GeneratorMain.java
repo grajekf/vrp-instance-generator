@@ -47,11 +47,13 @@ public class GeneratorMain {
         Option outputFile = Option.builder("o").argName("outputFile").hasArg().build();
         Option instances = Option.builder("i").argName("instances").hasArg().build();
         Option csvStreetMap = Option.builder("s").argName("streetMap").hasArg().build();
+        Option nominatimUrl = Option.builder("n").argName("nominatimUrl").hasArg().build();
         Options options = new Options();
         options.addOption(configFile);
         options.addOption(outputFile);
         options.addOption(instances);
         options.addOption(csvStreetMap);
+        options.addOption(nominatimUrl);
         CommandLineParser parser = new DefaultParser();
 
         try {
@@ -69,7 +71,9 @@ public class GeneratorMain {
             // Increase default max connection per route to 20
             cm.setDefaultMaxPerRoute(20);
 
-            NominatimClient client = new JsonNominatimClient("http://localhost:7070", HttpClients.custom().setConnectionManager(cm).build(), "t@t.com");
+            String nominatimServerUrl = line.getOptionValue('n', "http://localhost:7070");
+
+            NominatimClient client = new JsonNominatimClient(nominatimServerUrl, HttpClients.custom().setConnectionManager(cm).build(), "test@test.com");
 
             String configFilePath = line.getOptionValue("c");
             JsonReader reader = new JsonReader(new FileReader(configFilePath));
@@ -79,24 +83,21 @@ public class GeneratorMain {
             StreetTypeMapFactory streetTypeMapFactory = new CsvStreetTypeMapFactory(csvInput);
 
             List<String> streets = generatorConfig.getStreets();
-            String district = generatorConfig.getDistrict();
+            String city = generatorConfig.getCity();
             Envelope bbox = generatorConfig.getBbox();
             int vehicleCount = generatorConfig.getVehicleCount();
             int vehicleCapacity = generatorConfig.getVehicleCapacity();
             Node startNode = generatorConfig.getStartNode();
             int clientCount = generatorConfig.getClientCount();
-            int dumpOpenTimeSeconds = generatorConfig.getDumpOpenTimeSeconds();
-            int dumpCloseTimeSeconds = generatorConfig.getDumpCloseTimeSeconds();
-            int vehicleStartTimeSeconds = generatorConfig.getVehicleStartTimeSeconds();
             int instanceCount = Integer.parseInt(line.getOptionValue("i"));
             String outputFilePath = line.getOptionValue("o");
 
             List<Geometry> streetInfos;
 
-            if(district != null) {
+            if(streets == null || streets.size() == 0) {
                 StreetExtractor streetExtractor = new GraphHopperStreetExtractor(hopper, streetTypeMapFactory.getStreetInfoMap());
                 NominatimSearchRequest req = new NominatimSearchRequest();
-                req.setQuery("Warszawa " + district);
+                req.setQuery(city);
                 req.setPolygonFormat(PolygonFormat.GEO_JSON);
 
                 Address districtInfo = client.search(req).get(0);
@@ -126,7 +127,7 @@ public class GeneratorMain {
                 streetInfos = streets.parallelStream().map((street) -> {
                     try {
                         NominatimSearchRequest req = new NominatimSearchRequest();
-                        req.setQuery("Warszawa " + street);
+                        req.setQuery(city + " " + street);
                         req.setPolygonFormat(PolygonFormat.GEO_JSON);
                         return client.search(req);
                     } catch (IOException e) {
@@ -160,9 +161,6 @@ public class GeneratorMain {
                         startNode.getId(),
                         vehicleCapacity,
                         vehicleCount,
-                        dumpOpenTimeSeconds,
-                        dumpCloseTimeSeconds,
-                        vehicleStartTimeSeconds,
                         nodeDemands.toArray(new NodeWithDemandData[0]));
                 try {
                     FileWriter writer = new FileWriter(outputFilePath + i + ".vrp");

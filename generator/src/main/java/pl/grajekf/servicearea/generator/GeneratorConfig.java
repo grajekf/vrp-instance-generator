@@ -6,17 +6,14 @@ import pl.grajekf.servicearea.core.Node;
 import java.util.List;
 
 public class GeneratorConfig {
-    public GeneratorConfig(int vehicleCount, int vehicleCapacity, int dumpOpenTimeSeconds, int dumpCloseTimeSeconds, int vehicleStartTimeSeconds, Node startNode, Envelope bbox, int clientCount, List<String> streets, String district, double gammaShape, double gammaRate) {
+    public GeneratorConfig(int vehicleCount, int vehicleCapacity, int dumpOpenTimeSeconds, int dumpCloseTimeSeconds, int vehicleStartTimeSeconds, Node startNode, Envelope bbox, int clientCount, List<String> streets, String city, double gammaShape, double gammaRate) {
         this.vehicleCount = vehicleCount;
         this.vehicleCapacity = vehicleCapacity;
-        this.dumpOpenTimeSeconds = dumpOpenTimeSeconds;
-        this.dumpCloseTimeSeconds = dumpCloseTimeSeconds;
-        this.vehicleStartTimeSeconds = vehicleStartTimeSeconds;
         this.startNode = startNode;
         this.bbox = bbox;
         this.clientCount = clientCount;
         this.streets = streets;
-        this.district = district;
+        this.city = city;
         this.gammaShape = gammaShape;
         this.gammaRate = gammaRate;
     }
@@ -27,18 +24,6 @@ public class GeneratorConfig {
 
     public int getVehicleCapacity() {
         return vehicleCapacity;
-    }
-
-    public int getDumpOpenTimeSeconds() {
-        return dumpOpenTimeSeconds;
-    }
-
-    public int getDumpCloseTimeSeconds() {
-        return dumpCloseTimeSeconds;
-    }
-
-    public int getVehicleStartTimeSeconds() {
-        return vehicleStartTimeSeconds;
     }
 
     public Node getStartNode() {
@@ -57,8 +42,8 @@ public class GeneratorConfig {
         return streets;
     }
 
-    public String getDistrict() {
-        return district;
+    public String getCity() {
+        return city;
     }
 
     public double getGammaShape() {
@@ -71,14 +56,11 @@ public class GeneratorConfig {
 
     private int vehicleCount;
     private int vehicleCapacity;
-    private int dumpOpenTimeSeconds;
-    private int dumpCloseTimeSeconds;
-    private int vehicleStartTimeSeconds;
     private Node startNode;
     private Envelope bbox;
     private int clientCount;
     private List<String> streets;
-    private final String district;
+    private final String city;
     private double gammaShape;
     private double gammaRate;
 }

@@ -12,17 +12,11 @@ public class VRPConfig {
                      Long startNode,
                      int vehicleCapacity,
                      int vehicleCount,
-                     double dumpOpenTimeSeconds,
-                     double dumpCloseTimeSeconds,
-                     double vehicleStartTimeSeconds,
                      NodeWithDemandData[] plan) {
         this.nodes = nodes;
         this.startNode = startNode;
         this.vehicleCapacity = vehicleCapacity;
         this.vehicleCount = vehicleCount;
-        this.dumpOpenTimeSeconds = dumpOpenTimeSeconds;
-        this.dumpCloseTimeSeconds = dumpCloseTimeSeconds;
-        this.vehicleStartTimeSeconds = vehicleStartTimeSeconds;
         this.plan = plan;
     }
 
@@ -42,18 +36,6 @@ public class VRPConfig {
         return vehicleCount;
     }
 
-    public double getDumpOpenTimeSeconds() {
-        return dumpOpenTimeSeconds;
-    }
-
-    public double getDumpCloseTimeSeconds() {
-        return dumpCloseTimeSeconds;
-    }
-
-    public double getVehicleStartTimeSeconds() {
-        return vehicleStartTimeSeconds;
-    }
-
     public NodeWithDemandData[] getPlan() {
         return plan;
     }
@@ -63,9 +45,6 @@ public class VRPConfig {
     private Long startNode;
     private int vehicleCapacity;
     private int vehicleCount;
-    private double dumpOpenTimeSeconds;
-    private double dumpCloseTimeSeconds;
-    private double vehicleStartTimeSeconds;
     private NodeWithDemandData[] plan;
 
 }

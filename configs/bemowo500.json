@@ -1,9 +1,5 @@
 {
   "vehicleCount": -1,
-  "vehicleCapacity": 6000,
-  "dumpOpenTimeSeconds": 28800,
-  "dumpCloseTimeSeconds": 32200,
-  "vehicleStartTimeSeconds": 28800,
   "startNode": {
     "id": 0,
     "latitude": 52.26219,
@@ -16,7 +12,7 @@
     "maxy": 52.290423
   },
   "clientCount": 1250,
-  "district": "Bemowo",
+  "city": "Warszawa Bemowo",
   "gammaShape": 1.9,
   "gammaRate": 0.033
 }
