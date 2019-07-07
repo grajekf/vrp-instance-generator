@@ -138,12 +138,11 @@ public class GeneratorMain {
 
 
 
-            DemandGenerator demandGenerator = new GammaDemandGenerator(1.9, 0.033);
+            DemandGenerator demandGenerator = new GammaDemandGenerator(generatorConfig.getGammaShape(), generatorConfig.getGammaRate());
             ClientCoordsGenerator clientCoordsGenerator = new SynchronousClientCoordsGenerator();
 
             IntStream.range(0, instanceCount).parallel().forEach(i -> {
                 List<Location> locations = clientCoordsGenerator.generateClientCoords(clientCount, streetInfos);
-                System.out.println("Customer count: " + locations.size());
                 List<Integer> demands = demandGenerator.generateDemands(locations.size());
 
                 List<Node> nodes = IntStream.range(0, locations.size()).mapToObj(index -> {
@@ -164,8 +163,7 @@ public class GeneratorMain {
                         dumpOpenTimeSeconds,
                         dumpCloseTimeSeconds,
                         vehicleStartTimeSeconds,
-                        nodeDemands.toArray(new NodeWithDemandData[0]),
-                        outputFilePath + i + ".cm");
+                        nodeDemands.toArray(new NodeWithDemandData[0]));
                 try {
                     FileWriter writer = new FileWriter(outputFilePath + i + ".vrp");
                     gson.toJson(config, writer);

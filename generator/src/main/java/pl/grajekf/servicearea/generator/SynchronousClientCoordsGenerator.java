@@ -3,7 +3,6 @@ package pl.grajekf.servicearea.generator;
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.Geometry;
 import org.apache.commons.math3.distribution.UniformRealDistribution;
-import org.apache.commons.math3.util.Pair;
 import pl.grajekf.servicearea.generator.model.Location;
 
 import java.util.ArrayList;
@@ -64,13 +63,6 @@ public class SynchronousClientCoordsGenerator implements ClientCoordsGenerator {
             List<Location> locations = generateLocationsForStreet(street, count);
             result.addAll(locations);
         }
-
-//        addresses.forEach(street -> {
-//            int count = (int)Math.round(clientCount * street.getLength() / streetLengthSum);
-//            List<Location> locations = generateLocationsForStreet(street, count);
-//
-//            result.addAll(locations);
-//        });
 
         return result;
     }

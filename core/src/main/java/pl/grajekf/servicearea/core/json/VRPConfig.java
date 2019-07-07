@@ -15,8 +15,7 @@ public class VRPConfig {
                      double dumpOpenTimeSeconds,
                      double dumpCloseTimeSeconds,
                      double vehicleStartTimeSeconds,
-                     NodeWithDemandData[] plan,
-                     String costMatrixFile) {
+                     NodeWithDemandData[] plan) {
         this.nodes = nodes;
         this.startNode = startNode;
         this.vehicleCapacity = vehicleCapacity;
@@ -25,7 +24,6 @@ public class VRPConfig {
         this.dumpCloseTimeSeconds = dumpCloseTimeSeconds;
         this.vehicleStartTimeSeconds = vehicleStartTimeSeconds;
         this.plan = plan;
-        this.costMatrixFile = costMatrixFile;
     }
 
     public Node[] getNodes() {
@@ -60,9 +58,6 @@ public class VRPConfig {
         return plan;
     }
 
-    public String getCostMatrixFile() {
-        return costMatrixFile;
-    }
 
     private Node[] nodes;
     private Long startNode;
@@ -72,6 +67,5 @@ public class VRPConfig {
     private double dumpCloseTimeSeconds;
     private double vehicleStartTimeSeconds;
     private NodeWithDemandData[] plan;
-    private String costMatrixFile;
 
 }
